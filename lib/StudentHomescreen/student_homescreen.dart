@@ -91,7 +91,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                   decoration: const BoxDecoration(color: Colors.transparent),
                   child: const Center(
                       child: Text(
-                    "Stephen",
+                    "Musangi",
                     style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
