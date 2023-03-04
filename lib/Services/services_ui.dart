@@ -9,8 +9,8 @@ class Services extends StatefulWidget {
 
 class _ServicesState extends State<Services> {
   // variable to define the  main colors
-  Color mainColor = const Color.fromARGB(255, 13, 101, 16);
-  Color mainColor2 = const Color.fromARGB(255, 4, 38, 65);
+  Color mainColor = Color.fromARGB(255, 20, 130, 12);
+  Color mainColor2 = Colors.orange;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _ServicesState extends State<Services> {
                           colors: [mainColor, mainColor2],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight),
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
                   Container(

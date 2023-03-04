@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:homeworkplatform/Forum/forum.dart';
 import 'package:homeworkplatform/GradientIcon/gradient_icon.dart';
 import 'package:homeworkplatform/MyServices/myservices_ui.dart';
 import 'package:homeworkplatform/Services/services_ui.dart';
@@ -712,23 +713,31 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
       width: MediaQuery.of(context).size.width * 1,
       padding: const EdgeInsets.only(bottom: 2, top: 2),
       decoration: const BoxDecoration(color: Colors.transparent),
-      child: Center(
-        child: Container(
-          height: 60,
-          width: 60,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [studentScreenColor, studentScreenColor2],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight),
-            shape: BoxShape.circle,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: ((context) => const ForumScreen())));
+        },
+        child: Center(
+          child: Container(
+            height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [studentScreenColor, studentScreenColor2],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight),
+              shape: BoxShape.circle,
+            ),
+            child: const Center(
+                child: Text(
+              "FORUM",
+              style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.white),
+            )),
           ),
-          child: const Center(
-              child: Text(
-            "FORUM",
-            style: TextStyle(
-                fontSize: 12, fontWeight: FontWeight.w300, color: Colors.white),
-          )),
         ),
       ),
     );
@@ -1111,8 +1120,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                               child: Center(
                                 child: Center(
                                   child: Text(
-                                      nursingTutorsList[index]![1]
-                                          .toString(),
+                                      nursingTutorsList[index]![1].toString(),
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w300,
                                           color: Colors.black38,
