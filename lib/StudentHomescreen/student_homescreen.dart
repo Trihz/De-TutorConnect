@@ -38,8 +38,11 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
   /// list to store the details about my services
   HashMap<int, List> myServicesList = HashMap();
 
-  /// list to store the details about my services
+  /// list to store the details about engineering
   HashMap<int, List> engineeringTutorsList = HashMap();
+
+  /// list to store the details about nursing tutors
+  HashMap<int, List> nursingTutorsList = HashMap();
 
   /// variable to store the mode (tutor mode / student mode)
   bool mode = false;
@@ -179,9 +182,9 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
             color: Colors.white,
           ),
           child: AnimatedTextKit(
-            pause: const Duration(milliseconds: 2000),
+            totalRepeatCount: 1000,
             animatedTexts: [
-              TyperAnimatedText('DeTask is trusted by all students',
+              TyperAnimatedText('De-TutorConnect is trusted by all students',
                   textStyle: const TextStyle(
                     fontWeight: FontWeight.w200,
                   ),
@@ -253,7 +256,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            homeworkCategories(),
+            mode ? const SizedBox.shrink() : homeworkCategories(),
             engineeringTutors(),
             nursingTutors()
           ],
@@ -267,6 +270,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
     return Container(
       height: MediaQuery.of(context).size.height * 0.05,
       width: MediaQuery.of(context).size.width * 0.9,
+      margin: const EdgeInsets.only(right: 30),
       decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
@@ -277,6 +281,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
             return Container(
               height: MediaQuery.of(context).size.height * 0.05,
               width: MediaQuery.of(context).size.width * 0.2,
+              padding: const EdgeInsets.only(left: 5),
               margin:
                   const EdgeInsets.only(right: 5, left: 5, top: 5, bottom: 5),
               decoration: const BoxDecoration(
@@ -292,9 +297,9 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
               child: Center(
                 child: Text(
                   homeworksList[index].toString(),
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: studentScreenColor,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
                       fontSize: 12),
                 ),
               ),
@@ -762,27 +767,23 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => Services())));
+                              builder: ((context) => const Services())));
                     },
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.22,
                       width: MediaQuery.of(context).size.width * 0.45,
                       margin: const EdgeInsets.only(
                           right: 10, top: 10, bottom: 10, left: 10),
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [studentScreenColor, studentScreenColor2],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight),
-                          boxShadow: const [
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
                             BoxShadow(
                                 color: Colors.grey,
                                 offset: Offset(1, 1),
                                 blurRadius: 1,
                                 spreadRadius: 1)
                           ],
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5))),
+                          borderRadius: BorderRadius.all(Radius.circular(2))),
                       child: Column(
                         children: [
                           Container(
@@ -792,65 +793,106 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                                   color: Colors.transparent),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const CircleAvatar(
-                                    backgroundColor: Colors.white,
-                                    radius: 25,
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            studentScreenColor,
+                                            studentScreenColor2
+                                          ],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight),
+                                      shape: BoxShape.circle,
+                                    ),
                                   ),
                                   Text(
                                     engineeringTutorsList[index]![0].toString(),
                                     style: const TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400),
                                   ),
+                                  const SizedBox(
+                                    width: 5,
+                                  )
                                 ],
                               )),
                           Container(
-                              height: MediaQuery.of(context).size.height * 0.04,
-                              width: MediaQuery.of(context).size.width * 0.35,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                            height: MediaQuery.of(context).size.height * 0.04,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            decoration:
+                                const BoxDecoration(color: Colors.transparent),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SizedBox(width: 10),
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  LinearGradient(
                                     colors: [
                                       studentScreenColor,
-                                      studentScreenColor2
+                                      studentScreenColor2,
                                     ],
                                     begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(5),
-                                  bottomLeft: Radius.circular(5),
-                                  bottomRight: Radius.circular(5),
+                                    end: Alignment.bottomRight,
+                                  ),
                                 ),
-                              ),
-                              child: Center(
-                                  child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.white,
-                                    size: 16,
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  LinearGradient(
+                                    colors: [
+                                      studentScreenColor,
+                                      studentScreenColor2,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
                                   ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.white,
-                                    size: 16,
+                                ),
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  LinearGradient(
+                                    colors: [
+                                      studentScreenColor,
+                                      studentScreenColor2,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
                                   ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.white30,
-                                    size: 16,
+                                ),
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  const LinearGradient(
+                                    colors: [
+                                      Colors.black,
+                                      Colors.black,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
                                   ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.black,
-                                    size: 16,
-                                  )
-                                ],
-                              ))),
+                                ),
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  const LinearGradient(
+                                    colors: [
+                                      Colors.black,
+                                      Colors.black,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           Container(
                               height: MediaQuery.of(context).size.height * 0.05,
                               width: MediaQuery.of(context).size.width * 0.35,
@@ -864,7 +906,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                                           .toString(),
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w300,
-                                          color: Colors.white54,
+                                          color: Colors.black38,
                                           fontSize: 14)),
                                 ),
                               )),
@@ -879,14 +921,14 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                                   const Text("Starting Price: ",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w200,
-                                          color: Colors.white54,
+                                          color: Colors.black87,
                                           fontSize: 12)),
                                   const SizedBox(width: 10),
                                   Text(
                                       "Ksh ${engineeringTutorsList[index]![3].toString()}",
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w300,
-                                          color: Colors.white54,
+                                          color: Colors.black87,
                                           fontSize: 14)),
                                 ],
                               )),
@@ -926,134 +968,181 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
             width: MediaQuery.of(context).size.width * 1,
             decoration: const BoxDecoration(color: Colors.white),
             child: ListView.builder(
-                itemCount: engineeringTutorsList.length,
+                itemCount: nursingTutorsList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: ((context, index) {
-                  return Container(
-                    height: MediaQuery.of(context).size.height * 0.22,
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    margin: const EdgeInsets.only(
-                        right: 10, top: 10, bottom: 10, left: 10),
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            colors: [studentScreenColor, studentScreenColor2],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Colors.grey,
-                              offset: Offset(1, 1),
-                              blurRadius: 1,
-                              spreadRadius: 1)
-                        ],
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5))),
-                    child: Column(
-                      children: [
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.09,
-                            width: MediaQuery.of(context).size.width * 0.4,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const Services())));
+                    },
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.22,
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      margin: const EdgeInsets.only(
+                          right: 10, top: 10, bottom: 10, left: 10),
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(1, 1),
+                                blurRadius: 1,
+                                spreadRadius: 1)
+                          ],
+                          borderRadius: BorderRadius.all(Radius.circular(2))),
+                      child: Column(
+                        children: [
+                          Container(
+                              height: MediaQuery.of(context).size.height * 0.09,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              decoration: const BoxDecoration(
+                                  color: Colors.transparent),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            studentScreenColor,
+                                            studentScreenColor2
+                                          ],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight),
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                  Text(
+                                    nursingTutorsList[index]![0].toString(),
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  )
+                                ],
+                              )),
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.04,
+                            width: MediaQuery.of(context).size.width * 0.3,
                             decoration:
                                 const BoxDecoration(color: Colors.transparent),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                const CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  radius: 25,
+                                SizedBox(width: 10),
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  LinearGradient(
+                                    colors: [
+                                      studentScreenColor,
+                                      studentScreenColor2,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
                                 ),
-                                Text(
-                                  engineeringTutorsList[index]![0].toString(),
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  LinearGradient(
+                                    colors: [
+                                      studentScreenColor,
+                                      studentScreenColor2,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  LinearGradient(
+                                    colors: [
+                                      studentScreenColor,
+                                      studentScreenColor2,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  const LinearGradient(
+                                    colors: [
+                                      Colors.black,
+                                      Colors.black,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                GradientIcon(
+                                  Icons.star,
+                                  17,
+                                  const LinearGradient(
+                                    colors: [
+                                      Colors.black,
+                                      Colors.black,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
                                 ),
                               ],
-                            )),
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.04,
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [
-                                    studentScreenColor,
-                                    studentScreenColor2
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(5),
-                                topRight: Radius.circular(5),
-                                bottomLeft: Radius.circular(5),
-                                bottomRight: Radius.circular(5),
-                              ),
                             ),
-                            child: Center(
-                                child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.white,
-                                  size: 16,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.white,
-                                  size: 16,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.white30,
-                                  size: 16,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.black,
-                                  size: 16,
-                                )
-                              ],
-                            ))),
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.05,
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration:
-                                const BoxDecoration(color: Colors.transparent),
-                            child: Center(
+                          ),
+                          Container(
+                              height: MediaQuery.of(context).size.height * 0.05,
+                              width: MediaQuery.of(context).size.width * 0.35,
+                              padding: const EdgeInsets.only(left: 10),
+                              decoration: const BoxDecoration(
+                                  color: Colors.transparent),
                               child: Center(
-                                child: Text(
-                                    engineeringTutorsList[index]![1].toString(),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.white54,
-                                        fontSize: 14)),
-                              ),
-                            )),
-                        Container(
-                            height: MediaQuery.of(context).size.height * 0.04,
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            padding: const EdgeInsets.only(top: 15),
-                            decoration:
-                                const BoxDecoration(color: Colors.transparent),
-                            child: Row(
-                              children: [
-                                const Text("Starting Price: ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w200,
-                                        color: Colors.white54,
-                                        fontSize: 12)),
-                                const SizedBox(width: 10),
-                                Text(
-                                    "Ksh ${engineeringTutorsList[index]![3].toString()}",
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.white54,
-                                        fontSize: 14)),
-                              ],
-                            )),
-                      ],
+                                child: Center(
+                                  child: Text(
+                                      nursingTutorsList[index]![1]
+                                          .toString(),
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.black38,
+                                          fontSize: 14)),
+                                ),
+                              )),
+                          Container(
+                              height: MediaQuery.of(context).size.height * 0.04,
+                              width: MediaQuery.of(context).size.width * 0.35,
+                              padding: const EdgeInsets.only(top: 15),
+                              decoration: const BoxDecoration(
+                                  color: Colors.transparent),
+                              child: Row(
+                                children: [
+                                  const Text("Starting Price: ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w200,
+                                          color: Colors.black87,
+                                          fontSize: 12)),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                      "Ksh ${nursingTutorsList[index]![3].toString()}",
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.black87,
+                                          fontSize: 14)),
+                                ],
+                              )),
+                        ],
+                      ),
                     ),
                   );
                 })),
@@ -1069,6 +1158,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
     tasksPending = StudentsLogic().getPendingTasks();
     myServicesList = StudentsLogic().getMyServices();
     engineeringTutorsList = StudentsLogic().getEngineeringTutors();
+    nursingTutorsList = StudentsLogic().getNursingTutors();
     super.initState();
   }
 

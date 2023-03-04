@@ -17,11 +17,18 @@ class StudentsLogic {
     ["Expert in writing lab reports", "120", "3 days", "2"],
   ];
 
-  /// list of my services
+  /// list of engineering tutors
   List engineeringTutors = [
     ["Stephen", "Expert in solving algebraic questions", "3", "200"],
     ["Nic", "Expert in writing business reports", "3", "250"],
     ["Winnie", "Expert in writing lab reports", "3", "150"],
+  ];
+
+  /// list of nursing tutors
+  List nursingTutors = [
+    ["Alice", "Expert in writing medical reports", "3", "456"],
+    ["Winnie", "Expert in writing lab reports", "3", "134"],
+    ["Jane", "Expert in writing lab reports", "3", "210"],
   ];
 
   /// function to display a toast message
@@ -60,7 +67,7 @@ class StudentsLogic {
     return mySevicesList;
   }
 
-  /// function to get my services
+  /// function to get engineering tutors
   HashMap<int, List> getEngineeringTutors() {
     HashMap<int, List> engineeringTutorsList = HashMap();
     int tasksCount = myServices.length;
@@ -70,5 +77,17 @@ class StudentsLogic {
     print(engineeringTutorsList);
 
     return engineeringTutorsList;
+  }
+
+  /// function to get nursing tutors
+  HashMap<int, List> getNursingTutors() {
+    HashMap<int, List> nursingTutorsList = HashMap();
+    int tasksCount = myServices.length;
+    for (int x = 0; x < tasksCount; x++) {
+      nursingTutorsList[x] = nursingTutors[x];
+    }
+    print(nursingTutorsList);
+
+    return nursingTutorsList;
   }
 }
