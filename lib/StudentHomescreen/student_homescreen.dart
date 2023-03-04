@@ -18,8 +18,8 @@ class StudentHomescreen extends StatefulWidget {
 
 class _StudentHomescreenState extends State<StudentHomescreen> {
   // variable to define the homescreen main color
-  Color studentScreenColor = const Color.fromARGB(255, 13, 101, 16);
-  Color studentScreenColor2 = const Color.fromARGB(255, 4, 38, 65);
+  Color studentScreenColor = Color.fromARGB(255, 20, 130, 12);
+  Color studentScreenColor2 = Colors.orange;
 
   // list to store the homewrok categories
   List homeworksList = [
@@ -125,8 +125,8 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                       width: 4.0,
                     ),
                     switchBorder: Border.all(color: Colors.white),
-                    activeColor: studentScreenColor,
-                    inactiveColor: studentScreenColor,
+                    activeColor: Colors.transparent,
+                    inactiveColor: Colors.transparent,
                     onToggle: (val) {
                       setState(() {
                         mode = val;
@@ -370,7 +370,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                                     width: MediaQuery.of(context).size.width *
                                         0.15,
                                     margin: const EdgeInsets.only(
-                                        top: 0.2, right: 0.5),
+                                        top: 0.2, right: 0),
                                     decoration: BoxDecoration(
                                       gradient: LinearGradient(
                                           colors: [
@@ -381,6 +381,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                                           end: Alignment.bottomRight),
                                       borderRadius: const BorderRadius.only(
                                         bottomLeft: Radius.circular(20),
+                                        topRight: Radius.circular(5),
                                       ),
                                     ),
                                     child: Center(
@@ -414,26 +415,37 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                         Container(
                             height: MediaQuery.of(context).size.height * 0.04,
                             width: MediaQuery.of(context).size.width * 0.35,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [
-                                    studentScreenColor,
-                                    studentScreenColor2
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight),
-                              borderRadius: const BorderRadius.only(
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(5),
                                 bottomRight: Radius.circular(5),
                               ),
                             ),
                             child: Center(
-                                child: Text(
-                              tasksPending[index]![4].toString(),
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400),
+                                child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                GradientIcon(
+                                  Icons.punch_clock,
+                                  25,
+                                  LinearGradient(
+                                    colors: [
+                                      studentScreenColor,
+                                      studentScreenColor2,
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                Text(
+                                  tasksPending[index]![4].toString(),
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
                             ))),
                       ],
                     ),
@@ -508,13 +520,17 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                   return Container(
                     height: MediaQuery.of(context).size.height * 0.16,
                     width: MediaQuery.of(context).size.width * 1,
-                    margin: const EdgeInsets.only(bottom: 15, right: 15),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [studentScreenColor, studentScreenColor2],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight),
-                      borderRadius: const BorderRadius.all(Radius.circular(2)),
+                    margin:
+                        const EdgeInsets.only(bottom: 15, right: 5, left: 10),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(2, 2),
+                            blurRadius: 5,
+                            spreadRadius: 1)
+                      ],
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -528,32 +544,67 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                                   color: Colors.transparent),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                children: const [
+                                children: [
                                   SizedBox(width: 10),
-                                  Icon(
+                                  GradientIcon(
                                     Icons.star,
-                                    size: 17,
-                                    color: Colors.white,
+                                    17,
+                                    LinearGradient(
+                                      colors: [
+                                        studentScreenColor,
+                                        studentScreenColor2,
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
                                   ),
-                                  Icon(
+                                  GradientIcon(
                                     Icons.star,
-                                    size: 17,
-                                    color: Colors.white,
+                                    17,
+                                    LinearGradient(
+                                      colors: [
+                                        studentScreenColor,
+                                        studentScreenColor2,
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
                                   ),
-                                  Icon(
+                                  GradientIcon(
                                     Icons.star,
-                                    size: 17,
-                                    color: Colors.black,
+                                    17,
+                                    LinearGradient(
+                                      colors: [
+                                        studentScreenColor,
+                                        studentScreenColor2,
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
                                   ),
-                                  Icon(
+                                  GradientIcon(
                                     Icons.star,
-                                    size: 17,
-                                    color: Colors.black,
+                                    17,
+                                    const LinearGradient(
+                                      colors: [
+                                        Colors.black,
+                                        Colors.black,
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
                                   ),
-                                  Icon(
+                                  GradientIcon(
                                     Icons.star,
-                                    size: 17,
-                                    color: Colors.black,
+                                    17,
+                                    const LinearGradient(
+                                      colors: [
+                                        Colors.black,
+                                        Colors.black,
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -569,14 +620,14 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w100,
                                         fontStyle: FontStyle.italic,
-                                        color: Colors.white54,
+                                        color: Colors.black87,
                                         fontSize: 17)),
                               ),
                             ),
                           ],
                         ),
                         const Divider(
-                          color: Colors.white38,
+                          color: Colors.black26,
                         ),
                         Row(
                           children: [
@@ -595,13 +646,13 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                                       const Text("Starting Price:",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w200,
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontSize: 13)),
                                       const SizedBox(width: 10),
                                       Text("Ksh ${myServicesList[index]![1]}",
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w300,
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontSize: 14)),
                                     ],
                                   ),
@@ -619,13 +670,13 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                                       const Text("Delivery period:",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w200,
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontSize: 13)),
                                       const SizedBox(width: 10),
                                       Text(myServicesList[index]![2],
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w300,
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontSize: 14)),
                                     ],
                                   ),
@@ -634,7 +685,7 @@ class _StudentHomescreenState extends State<StudentHomescreen> {
                             ),
                             const Icon(
                               Icons.book,
-                              color: Colors.white,
+                              color: Colors.black87,
                               size: 40,
                             )
                           ],
