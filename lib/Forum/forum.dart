@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:homeworkplatform/Forum/forum_logic.dart';
 import 'package:homeworkplatform/GradientIcon/gradient_icon.dart';
+import 'package:homeworkplatform/Question/question_ui.dart';
 import 'package:homeworkplatform/StudentHomescreen/students_logic.dart';
 
 class ForumScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class ForumScreen extends StatefulWidget {
 
 class _ForumScreenState extends State<ForumScreen> {
   // variable to define the homescreen main color
-  Color mainColor = Color.fromARGB(255, 20, 130, 12);
+  Color mainColor = const Color.fromARGB(255, 20, 130, 12);
   Color mainColor1 = Colors.orange;
 
   /// variable to define the scroll controller
@@ -177,33 +178,39 @@ class _ForumScreenState extends State<ForumScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Container(
-              height: 70,
-              width: 70,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [mainColor1, mainColor],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight),
-                shape: BoxShape.circle,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  Text(
-                    "ASK",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white),
-                  ),
-                  Icon(
-                    Icons.question_answer,
-                    color: Colors.white,
-                    size: 25,
-                  ),
-                ],
-              )),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const QuestionUI()));
+            },
+            child: Container(
+                height: 70,
+                width: 70,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [mainColor1, mainColor],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight),
+                  shape: BoxShape.circle,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    Text(
+                      "ASK",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                    ),
+                    Icon(
+                      Icons.question_answer,
+                      color: Colors.white,
+                      size: 25,
+                    ),
+                  ],
+                )),
+          ),
         ],
       ),
     );
