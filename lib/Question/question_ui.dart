@@ -14,355 +14,129 @@ class _QuestionUIState extends State<QuestionUI> {
   Color mainColor1 = Colors.orange;
 
   /// variable to define the text editing controller
-  // text form controller
   final TextEditingController textEditingController = TextEditingController();
+
+  /// this variable sets the initial value for the dropdown
+  String initialValue = "Engineering";
+
+  /// this variable stores the dropdown items
+  var dropdownItems = [
+    "Engineering",
+    "Nursing",
+    "Business",
+  ];
 
   /// function to display the safe area
   Widget safeArea() {
-    return SizedBox(height: MediaQuery.of(context).size.height * 0.06);
+    return SizedBox(height: MediaQuery.of(context).size.height * 0.07);
   }
 
-  /// function to display the question's description
-  Widget question() {
+  /// function to display ask a question section
+  Widget askAQuestion() {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.31,
+      height: MediaQuery.of(context).size.height * 0.2,
       width: MediaQuery.of(context).size.width * 1,
-      margin: const EdgeInsets.only(top: 10),
       decoration: const BoxDecoration(color: Colors.transparent),
       child: Column(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.07,
-            width: MediaQuery.of(context).size.width * 1,
-            decoration: const BoxDecoration(color: Colors.transparent),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.07,
-                  width: MediaQuery.of(context).size.width * 0.1,
-                  decoration: const BoxDecoration(color: Colors.transparent),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      GradientIcon(
-                        Icons.person_3,
-                        30,
-                        LinearGradient(
-                          colors: [
-                            mainColor,
-                            mainColor1,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      const Text("@Trihz",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w300,
-                              fontStyle: FontStyle.italic,
-                              fontSize: 14))
-                    ],
-                  ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.07,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  padding: const EdgeInsets.only(left: 10),
-                  decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      Text("Is mosfet a bipolar or unipolar device?",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 18)),
-                    ],
-                  ),
-                )
+          GradientIcon(
+            Icons.question_mark,
+            70,
+            LinearGradient(
+              colors: [
+                mainColor,
+                mainColor1,
               ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
           ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.23,
-            width: MediaQuery.of(context).size.width * 1,
-            decoration: const BoxDecoration(color: Colors.transparent),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                    height: MediaQuery.of(context).size.height * 0.04,
-                    width: MediaQuery.of(context).size.width * 1,
-                    padding: const EdgeInsets.only(left: 10),
-                    decoration: const BoxDecoration(color: Colors.transparent),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Problem Description",
-                        style: TextStyle(
-                            color: mainColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.19,
-                  width: MediaQuery.of(context).size.width * 1,
-                  padding: const EdgeInsets.only(left: 10),
-                  decoration: const BoxDecoration(color: Colors.transparent),
-                  child: const Text(
-                    "I am trying to better understand the difference between bipolar junction transistors and metal-oxide-semiconductor field-effect transistors (MOSFETs). I have come across conflicting information regarding whether MOSFETs are considered bipolar devices. Can someone clarify whether MOSFETs are bipolar or not and explain the differences between MOSFETs and BJTs?",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        height: 2,
-                        fontWeight: FontWeight.w300),
-                  ),
-                ),
-              ],
-            ),
-          )
+          const SizedBox(height: 10),
+          const Text(
+            "Ask a Question",
+            style: TextStyle(color: Colors.black, fontSize: 19),
+          ),
         ],
       ),
     );
   }
 
-  /// function to display the answers
-  Widget answers() {
+  /// function to display the question title section
+  Widget questionTitle() {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.41,
+      height: MediaQuery.of(context).size.height * 0.1,
       width: MediaQuery.of(context).size.width * 1,
-      margin: const EdgeInsets.only(top: 10),
       decoration: const BoxDecoration(color: Colors.transparent),
-      child: Column(
-        children: [
-          Container(
-              height: MediaQuery.of(context).size.height * 0.03,
-              width: MediaQuery.of(context).size.width * 1,
-              padding: const EdgeInsets.only(left: 10),
-              decoration: const BoxDecoration(color: Colors.transparent),
-              child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Answers",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: mainColor),
-                  ))),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.37,
-            width: MediaQuery.of(context).size.width * 1,
-            decoration: const BoxDecoration(color: Colors.transparent),
-            child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: ((context, index) {
-                  return Container(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    width: MediaQuery.of(context).size.width * 1,
-                    margin: const EdgeInsets.only(bottom: 10),
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              width: MediaQuery.of(context).size.width * 0.2,
-                              padding: const EdgeInsets.only(left: 5),
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      const SizedBox(width: 10),
-                                      const Text(
-                                        "Views",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w300),
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        "(3)",
-                                        style: TextStyle(
-                                            color: mainColor,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 9),
-                                  Row(
-                                    children: [
-                                      const SizedBox(width: 9),
-                                      GradientIcon(
-                                        Icons.thumb_up_sharp,
-                                        16,
-                                        LinearGradient(
-                                          colors: [
-                                            mainColor,
-                                            mainColor1,
-                                          ],
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        "(4)",
-                                        style: TextStyle(
-                                            color: mainColor,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 9),
-                                  Row(
-                                    children: [
-                                      const SizedBox(width: 9),
-                                      GradientIcon(
-                                        Icons.thumb_down,
-                                        16,
-                                        LinearGradient(
-                                          colors: [
-                                            mainColor,
-                                            mainColor1,
-                                          ],
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        "(1)",
-                                        style: TextStyle(
-                                            color: mainColor,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              padding:
-                                  const EdgeInsets.only(left: 10, right: 5),
-                              decoration: const BoxDecoration(
-                                color: Colors.transparent,
-                              ),
-                              child: const Text(
-                                "But requirement is like to build 2 images so that image for Azure should have Azure SDK and Image for AWS should have AWS SDK only.Is there any specific approach to tackle such scenarios?In C++, we have compiler flag so that we can skip some portion of code from compilation. Is there any such option available in C# while compiling code to IL.",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 14),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 9),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: [
-                                const SizedBox(width: 10),
-                                Text(
-                                  "Trend",
-                                  style: TextStyle(
-                                      color: mainColor1,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                const SizedBox(width: 5),
-                                GradientIcon(
-                                  Icons.post_add,
-                                  16,
-                                  LinearGradient(
-                                    colors: [
-                                      mainColor1,
-                                      mainColor1,
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 50),
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.04,
-                              width: MediaQuery.of(context).size.width * 0.25,
-                              decoration: const BoxDecoration(
-                                  color: Color.fromARGB(255, 224, 238, 216),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                              child: Center(
-                                child: Center(
-                                  child: Text(
-                                    "View full answer",
-                                    style: TextStyle(
-                                        color: mainColor1,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                          ],
-                        ),
-                        const Divider(
-                          color: Colors.grey,
-                          indent: 5,
-                          endIndent: 5,
-                        )
-                      ],
-                    ),
-                  );
-                })),
-          )
-        ],
-      ),
-    );
-  }
-
-  /// function to display the post answer section
-  Widget postAnswer() {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.18,
-      width: MediaQuery.of(context).size.width * 1,
-      margin: const EdgeInsets.only(top: 10),
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [mainColor, mainColor1],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight),
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
+            height: MediaQuery.of(context).size.height * 0.05,
+            width: MediaQuery.of(context).size.width * 1,
+            padding: const EdgeInsets.only(left: 10),
+            decoration: const BoxDecoration(color: Colors.transparent),
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Title of the question",
+                    style: TextStyle(color: mainColor))),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.05,
+            width: MediaQuery.of(context).size.width * 0.9,
+            decoration: const BoxDecoration(color: Colors.transparent),
+            child: TextField(
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                enabledBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  borderSide: BorderSide(
+                    color: mainColor,
+                  ),
+                ),
+                labelText: "Type a brief and clear title for your question",
+                labelStyle: const TextStyle(
+                    color: Colors.black45,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w300),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// function to display the question's description
+  Widget questionBody() {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.2,
+      width: MediaQuery.of(context).size.width * 1,
+      decoration: const BoxDecoration(color: Colors.transparent),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.05,
+            width: MediaQuery.of(context).size.width * 1,
+            padding: const EdgeInsets.only(left: 10),
+            decoration: const BoxDecoration(color: Colors.transparent),
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Description the question",
+                  style: TextStyle(color: mainColor),
+                )),
+          ),
+          Container(
               height: MediaQuery.of(context).size.height * 0.12,
-              width: MediaQuery.of(context).size.width * 0.7,
+              width: MediaQuery.of(context).size.width * 0.9,
               decoration: const BoxDecoration(color: Colors.transparent),
               child: TextFormField(
                 controller: textEditingController,
@@ -370,40 +144,188 @@ class _QuestionUIState extends State<QuestionUI> {
                 maxLines: 6,
                 keyboardType: TextInputType.multiline,
                 decoration: const InputDecoration(
-                    hintText:
-                        "Type your answer inrelation to the asked question",
+                    hintText: "Give a brief descripition about your problem ",
                     hintStyle: TextStyle(
-                        color: Colors.white54,
+                        color: Colors.black45,
                         fontSize: 12,
                         fontWeight: FontWeight.w300),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.white38,
+                          color: Colors.black,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(5)))),
               )),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.03,
-            width: MediaQuery.of(context).size.width * 0.2,
-            decoration: const BoxDecoration(color: Colors.transparent),
-            child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(5)))),
-                child: const Text(
-                  "POST",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                )),
-          )
         ],
+      ),
+    );
+  }
+
+  /// function to display the answers
+  Widget keyWord() {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.1,
+      width: MediaQuery.of(context).size.width * 1,
+      decoration: const BoxDecoration(color: Colors.transparent),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.05,
+            width: MediaQuery.of(context).size.width * 1,
+            padding: const EdgeInsets.only(left: 10),
+            decoration: const BoxDecoration(color: Colors.transparent),
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Choose a Keyword",
+                  style: TextStyle(color: mainColor),
+                )),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.05,
+                width: MediaQuery.of(context).size.width * 0.7,
+                margin: const EdgeInsets.only(left: 20),
+                decoration: const BoxDecoration(color: Colors.transparent),
+                child: TextField(
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      borderSide: BorderSide(
+                        color: Colors.black,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
+                      borderSide: BorderSide(
+                        color: mainColor,
+                      ),
+                    ),
+                    labelText: "Type a keyword",
+                    labelStyle: const TextStyle(
+                        color: Colors.black45,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w300),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 20),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.05,
+                width: MediaQuery.of(context).size.width * 0.05,
+                decoration: const BoxDecoration(color: Colors.transparent),
+                child: Center(
+                  child: GradientIcon(
+                    Icons.search,
+                    25,
+                    LinearGradient(
+                      colors: [
+                        mainColor,
+                        mainColor1,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// function to display the post answer section
+  Widget category() {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.12,
+      width: MediaQuery.of(context).size.width * 1,
+      decoration: const BoxDecoration(color: Colors.transparent),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.05,
+            width: MediaQuery.of(context).size.width * 1,
+            padding: const EdgeInsets.only(left: 10),
+            decoration: const BoxDecoration(color: Colors.transparent),
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Choose category of the question",
+                  style: TextStyle(color: mainColor),
+                )),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.06,
+            width: MediaQuery.of(context).size.width * 0.35,
+            margin: const EdgeInsets.only(left: 20),
+            decoration: const BoxDecoration(color: Colors.transparent),
+            child: DropdownButtonFormField(
+              value: initialValue,
+              dropdownColor: Colors.white,
+              iconEnabledColor: mainColor,
+              iconDisabledColor: mainColor,
+              items: dropdownItems.map((String items) {
+                return DropdownMenuItem(value: items, child: Text(items));
+              }).toList(),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                  ),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                  ),
+                ),
+                isDense: true,
+                contentPadding: const EdgeInsets.fromLTRB(12, 10, 12, 0),
+              ),
+              style: const TextStyle(color: Colors.black),
+              onChanged: (String? value) {},
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// function to display the post question button
+  Widget postQuestion() {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.05,
+      width: MediaQuery.of(context).size.width * 0.5,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [mainColor, mainColor1],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
+          borderRadius: const BorderRadius.all(Radius.circular(20))),
+      child: const Center(
+        child: Text(
+          "POST QUESTION",
+          style: TextStyle(
+              fontWeight: FontWeight.w600, fontSize: 14, color: Colors.white),
+        ),
       ),
     );
   }
@@ -416,7 +338,16 @@ class _QuestionUIState extends State<QuestionUI> {
         width: MediaQuery.of(context).size.width * 1,
         decoration: const BoxDecoration(color: Colors.transparent),
         child: Column(
-          children: [safeArea(), question(), answers(), postAnswer()],
+          children: [
+            safeArea(),
+            askAQuestion(),
+            questionTitle(),
+            questionBody(),
+            keyWord(),
+            category(),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+            postQuestion()
+          ],
         ),
       ),
     );
