@@ -169,7 +169,7 @@ class _ForumScreenState extends State<ForumScreen> {
   }
 
   /// function to display ask a question floating container
-  Widget asksQuestion() {
+  Widget askQuestion() {
     return Container(
       height: MediaQuery.of(context).size.height * 0.07,
       width: MediaQuery.of(context).size.width * 1,
@@ -457,7 +457,7 @@ class _ForumScreenState extends State<ForumScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          asksQuestion(),
+          askQuestion(),
         ],
       ),
     ));
